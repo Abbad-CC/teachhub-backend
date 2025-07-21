@@ -326,12 +326,12 @@ export const getBroadcastEmails = async (req: AuthRequest, res: Response) => {
     const course = await Course.findOne({
       where: {
         id: courseId,
-        teacherId: req.user.userId
+        
       }
     });
 
     if (!course) {
-      return res.status(403).json({ error: 'You do not own this course or it does not exist' });
+      return res.status(403).json({ error: 'course does not exist' });
     }
 
     // Get all broadcast emails for this course
