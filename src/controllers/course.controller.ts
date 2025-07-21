@@ -252,12 +252,12 @@ export const unpublishCourse = async (req: AuthRequest, res: Response) => {
         const course = await Course.findOne({ where: { id, teacherId: req.user.userId } });
         if (!course) return res.status(404).json({ error: 'Course not found or not owned by you' });
 
-        //Add Later on!!
+        // Add Later on!!
 
-        // const enrollmentCount = await Enrollment.count({ where: { courseId } });
-        // if (enrollmentCount > 0) {
-        //     return res.status(403).json({ error: 'Cannot delete course with enrolled students' });
-        // }
+        const enrollmentCount = await Enrollment.count({ where: { id } });
+        if (enrollmentCount > 0) {
+            return res.status(403).json({ error: 'Cannot delete course with enrolled students' });
+        }
 
 
         course.published = false;

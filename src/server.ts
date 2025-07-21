@@ -22,10 +22,7 @@ sequelize
       console.error('❌ Server error:', err);
     });
 
-    // Log when server closes
-    server.on('close', () => {
-      console.log('⚠️ Server closed');
-    });
+    
 
   })
   .catch((err) => {
