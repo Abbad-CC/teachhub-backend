@@ -8,6 +8,7 @@ import {
   toggleTeacherStatus,
   unpublishCourse,
   publishCourse,
+  toggleCoursePublished,
 } from '../controllers/admin.controller';
 import { authenticate, isAdmin } from '../middlewares/auth.middleware';
 
@@ -36,6 +37,7 @@ router.patch('/course/:id/unpublish', authenticate, isAdmin, unpublishCourse);
 
 router.patch('/course/:id/publish', authenticate, isAdmin, publishCourse);
 
+router.patch('/course/:id/status', authenticate, isAdmin, toggleCoursePublished);
 
 export default router;
 

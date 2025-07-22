@@ -118,3 +118,19 @@ export const publishCourse = async (req: AuthRequest, res: Response) => {
     res.status(500).json({ error: 'Failed to unpublish course', details: error });
   }
 };
+
+export const toggleCoursePublished = async (req:AuthRequest, res: Response)=>{
+  const {id}= req.params;
+  const {IsPublished} = req.body;
+   try {
+    const course = await Course.findByPk(id);
+    if (!course) return res.status(404).json({ error: 'Course not found' });
+
+    course.published = IsPublished;
+    await course.save();
+
+   res.status(200).json({ message: `Course ${IsPublished ? 'Published' : 'UnPublished'} successfully`, course });;
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to Toggle course Status', details: error });
+  }
+}
