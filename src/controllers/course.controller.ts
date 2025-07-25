@@ -257,7 +257,7 @@ export const unpublishCourse = async (req: AuthRequest, res: Response) => {
         const enrollmentCount = await Enrollment.count({ where: { courseId : id } });
         if (enrollmentCount > 0) {
           console.log("this is enrollmentCount of this course : ", enrollmentCount)
-            return res.status(403).json({ error: 'Cannot delete course with enrolled students' });
+            return res.status(403).json({ error: 'Cannot unpublish course with enrolled students' });
         }
 
         course.published = false;

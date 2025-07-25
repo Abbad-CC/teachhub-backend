@@ -12,6 +12,6 @@ export const generateToken = (userId: string, userName:string,  role: string): s
   return token;
 };
 
-export const verifyToken = (token: string) => {
-  return jwt.verify(token, JWT_SECRET);
-};
+// export const verifyToken = (token: string) => {
+//   return jwt.verify(token, JWT_SECRET);
+// };

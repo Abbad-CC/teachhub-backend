@@ -22,14 +22,14 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
   }
 };
 
-export const authorizeRole = (roles: string[]) => {
-  return (req: AuthRequest, res: Response, next: NextFunction) => {
-    if (!roles.includes(req.user?.role)) {
-      return res.status(403).json({ error: 'Forbidden: Insufficient role' });
-    }
-    next();
-  };
-};
+// export const authorizeRole = (roles: string) => {
+//   return (req: AuthRequest, res: Response, next: NextFunction) => {
+//     if (!roles.includes(req.user?.role)) {
+//       return res.status(403).json({ error: 'Forbidden: Insufficient role' });
+//     }
+//     next();
+//   };
+// };
 
 export const isTeacher = (req: AuthRequest, res: Response, next: NextFunction) => {
   if (req.user?.role !== 'teacher') {
